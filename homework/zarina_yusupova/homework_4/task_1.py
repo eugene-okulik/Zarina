@@ -1,5 +1,5 @@
 my_dict = {
-    'tuple': (1, 2, 'bc',  3, None, 5.5),
+    'tuple': (1, 2, 'bc', 3, None, 5.5),
     'list': ['abc', 10, False, 11.5, 0, True],
     'dict': {'one': 1, 'two': 2, 'tree': 3, 'four': 4, 'five': 50.5},
     'set': {1, 2, 10, 6, 'abbb'}
