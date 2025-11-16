@@ -7,7 +7,7 @@ my_dict = {
 print((my_dict['tuple'])[-1])
 my_dict['list'].append(1111)
 my_dict['list'].pop(1)
-my_dict['dict']['i am a tuple'] = 999
+my_dict['dict'][('i am a tuple',)] = 999
 my_dict['dict'].pop('one')
 my_dict['set'].add('pyth')
 my_dict['set'].remove(1)
