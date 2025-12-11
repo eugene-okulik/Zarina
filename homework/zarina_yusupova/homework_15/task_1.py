@@ -66,11 +66,9 @@ cursor.execute(query12, student_id)
 books = cursor.fetchall()
 print(books)
 query13 = '''
-SELECT s.id, name, second_name, group_id, b.title, sj.title, l.title, m.value
-FROM students s JOIN books b ON s.id = b.taken_by_student_id 
-JOIN marks m ON s.id = m.student_id JOIN lessons l ON m.lesson_id = l.id 
-JOIN subjects sj ON l.subject_id = sj.id
-WHERE s.id = %s
+SELECT s.id, name, second_name, group_id, b.title, sj.title, l.title, m.value FROM students s JOIN books b 
+ON s.id = b.taken_by_student_id JOIN marks m ON s.id = m.student_id JOIN lessons l ON m.lesson_id = l.id 
+JOIN subjects sj ON l.subject_id = sj.id WHERE s.id = %s
 '''
 cursor.execute(query13, student_id)
 info_of_student = cursor.fetchall()
