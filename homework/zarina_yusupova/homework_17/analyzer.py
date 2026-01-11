@@ -28,17 +28,17 @@ def create_blocks(filepath):
     current_lines = []
 
     with open(filepath, "r") as f:
-        for line in f:
+        for lineno, line in enumerate(f, start=1):
             line_stripped = line.strip()
             try:
                 timestamp = datetime.strptime(line_stripped[:19], "%Y-%m-%d %H:%M:%S")
                 if current_time is not None:
                     blocks[current_time] = current_lines
                 current_time = timestamp
-                current_lines = [line]
+                current_lines = [(lineno, line)]
             except ValueError:
                 if current_time is not None:
-                    current_lines.append(line)
+                    current_lines.append((lineno, line))
         if current_time is not None:
             blocks[current_time] = current_lines
     return blocks
