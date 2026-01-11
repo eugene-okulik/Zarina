@@ -28,17 +28,17 @@ def create_blocks(filepath):
     current_lines = []
 
     with open(filepath, "r") as f:
-        for line in f:
+        for lineno, line in enumerate(f, start=1):
             line_stripped = line.strip()
             try:
                 timestamp = datetime.strptime(line_stripped[:19], "%Y-%m-%d %H:%M:%S")
                 if current_time is not None:
                     blocks[current_time] = current_lines
                 current_time = timestamp
-                current_lines = [line]
+                current_lines = [(lineno,line)]
             except ValueError:
                 if current_time is not None:
-                    current_lines.append(line)
+                    current_lines.append((lineno, line))
         if current_time is not None:
             blocks[current_time] = current_lines
     return blocks
@@ -57,13 +57,13 @@ def fragment_search(line, search_word):
 def search_in_blocks(filepath, blocks, search_word):
     results = []
     for timestamp, lines in blocks.items():
-        for number, line in enumerate(lines, start=1):
+        for lineno, line in enumerate(lines, start=1):
             if search_word in line:
                 fragment = fragment_search(line, search_word)
                 results.append({
                     "file": filepath,
                     "time": timestamp,
-                    "number_of_line": number,
+                    "number_of_line": lineno,
                     "fragment": fragment
                 })
     return results
