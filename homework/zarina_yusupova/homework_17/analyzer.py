@@ -80,6 +80,7 @@ def main():
         matches = search_in_blocks(file, blocks, search_word)
         for match in matches:
             total += 1
+            print("==========")
             print(f"Файл: {match['file']}")
             print(f"Время ошибки: {match['time']}")
             print(f"Номер строки: {match['number_of_line']}")
