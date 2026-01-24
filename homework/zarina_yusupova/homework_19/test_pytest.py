@@ -36,16 +36,19 @@ def test_one_object(new_object_id, for_every_test):
     assert response["id"] == new_object_id
 
 
-@pytest.mark.parametrize('idx, bodies', [
-    (0, {"name": "Second object", "data": {"color": "red", "size": "big"}}),
-    (1, {"name": "Third object", "data": {"color": "red", "size": "big"}}),
-    (2, {"name": "Fourth object", "data": {"color": "red", "size": "big"}})]
-                         )
-def test_add_object(for_every_test, idx, bodies):
+@pytest.mark.parametrize(
+    "bodies",
+    [
+        {"name": "Second object", "data": {"color": "red", "size": "big"}},
+        {"name": "Third object", "data": {"color": "red", "size": "big"}},
+        {"name": "Fourth object", "data": {"color": "red", "size": "big"}},
+    ],
+)
+def test_add_object(for_every_test, bodies):
     headers = {"Content-Type": "application/json"}
     response = requests.post("http://objapi.course.qa-practice.com/object", json=bodies, headers=headers).json()
-    if idx == 2:
-        assert response["name"] == "Fourth object"
+    assert response["name"] == bodies["name"]
+    assert response["data"] == bodies["data"]
 
 
 @pytest.mark.critical
