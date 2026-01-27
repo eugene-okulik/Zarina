@@ -1,5 +1,6 @@
 import requests
 import pytest
+import allure
 
 
 @pytest.fixture()
@@ -26,16 +27,27 @@ def for_all_tests():
     print("Testing completed")
 
 
+@allure.feature("objects")
+@allure.story("Get objects")
+@allure.title("Получение всех объектов")
 def test_all_objects(for_every_test, for_all_tests):
-    response = requests.get('http://objapi.course.qa-practice.com/object').json()
-    assert len(response) == 1
+    with allure.step("Run get all objects"):
+        response = requests.get('http://objapi.course.qa-practice.com/object').json()
+    with allure.step("Check that len(response) is 1"):
+        assert len(response) == 1
 
 
+@allure.feature("objects")
+@allure.story("Get objects")
+@allure.title("Получение объекта по id")
 def test_one_object(new_object_id, for_every_test):
     response = requests.get(f'http://objapi.course.qa-practice.com/object/{new_object_id}').json()
     assert response["id"] == new_object_id
 
 
+@allure.feature("objects")
+@allure.story("Post objects")
+@allure.title("Добавление объекта")
 @pytest.mark.parametrize(
     "bodies",
     [
@@ -51,6 +63,9 @@ def test_add_object(for_every_test, bodies):
     assert response["data"] == bodies["data"]
 
 
+@allure.feature("objects")
+@allure.story("Put objects")
+@allure.title("Изменение объекта")
 @pytest.mark.critical
 def test_put_object(new_object_id, for_every_test):
     body = {"name": "Thirddd object", "data": {"color": "blue", "size": "small"}}
@@ -61,6 +76,9 @@ def test_put_object(new_object_id, for_every_test):
     assert response.json()["data"] == {"color": "blue", "size": "small"}
 
 
+@allure.feature("objects")
+@allure.story("Put objects")
+@allure.title("Изменение объекта")
 @pytest.mark.medium
 def test_patch_object(new_object_id, for_every_test):
     body = {"name": "Fifth object"}
@@ -71,6 +89,9 @@ def test_patch_object(new_object_id, for_every_test):
     assert response.json()["data"] == {"color": "red", "size": "big"}
 
 
+@allure.feature("objects")
+@allure.story("Delete objects")
+@allure.title("Удаление объекта")
 def test_delete_object(new_object_id, for_every_test):
     response = requests.delete(f"http://objapi.course.qa-practice.com/object/{new_object_id}")
     assert response.status_code == 200
