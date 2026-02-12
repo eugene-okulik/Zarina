@@ -11,7 +11,7 @@ from endpoints.patch_object import PatchObject
 def for_every_test():
     print("before test")
     yield
-    print(" after test")
+    print("  after test")
 
 
 @pytest.fixture(scope="session")
