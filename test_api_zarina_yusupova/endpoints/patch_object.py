@@ -11,7 +11,3 @@ class PatchObject(Endpoint):
         self.response = requests.patch(f'{self.url}/{object_id}', json=payload, headers=headers)
         self.json = self.response.json()
         return self.response
-
-    @allure.step("Check that data of object is correct")
-    def check_that_data_of_object_is_correct(self, data):
-        assert self.json["data"] == data["data"]

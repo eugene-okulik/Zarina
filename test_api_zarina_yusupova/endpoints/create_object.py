@@ -14,8 +14,3 @@ class CreateObject(Endpoint):
         self.json = self.response.json()
         self.object_id = self.json['id']
         return self.response
-
-    @allure.step("Check that name and data of object are correct")
-    def check_that_name_and_data_of_object_are_correct(self, data):
-        assert self.json["name"] == data["name"]
-        assert self.json["data"] == data["data"]

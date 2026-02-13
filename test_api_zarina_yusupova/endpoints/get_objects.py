@@ -12,6 +12,6 @@ class GetObjects(Endpoint):
         self.json = self.response.json()
         return self.response
 
-    @allure.step('Check that len of response is 1')
-    def check_that_len_of_response_is_correct(self):
+    @allure.step('Check that len of response is one')
+    def check_that_len_of_response_is_one(self):
         assert len(self.json) == 1
