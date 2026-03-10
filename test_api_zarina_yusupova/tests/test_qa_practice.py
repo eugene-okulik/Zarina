@@ -42,3 +42,4 @@ def test_patch_object(patch_object_endpoint, object_id_f):
 def test_delete_object(delete_object_endpoint, object_id_f):
     delete_object_endpoint.delete_object(object_id_f)
     delete_object_endpoint.check_that_status_is_200()
+
