@@ -1,7 +1,41 @@
-from playwright.sync_api import Page, expect
-import re
+from playwright.sync_api import Page
 
 
 def test_get_by_role(page: Page):
     page.goto('https://the-internet.herokuapp.com/')
-    print('ff')
+    page.get_by_role('link', name='Form Authentication').click()
+    username_field = page.get_by_role('textbox', name='username')
+    username_field.fill('Zarina')
+    password_field = page.get_by_role('textbox', name='password')
+    password_field.fill('11111')
+    page.get_by_role('button').click()
+
+
+def test_registration_form(page: Page):
+    page.goto('https://demoqa.com/automation-practice-form')
+    page.get_by_placeholder('First Name').fill('Zarina')
+    page.get_by_placeholder('Last Name').fill('Yusupova')
+    page.get_by_placeholder('name@example.com').fill('zarina133@mail.ru')
+    page.get_by_label('Female').check()
+    page.get_by_placeholder('Mobile Number').fill('123456789000')
+    page.locator('#dateOfBirthInput').click()
+    page.locator('.react-datepicker__month-select').click()
+    page.locator('.react-datepicker__month-select').select_option(label="January")
+    page.locator('.react-datepicker__year-select').click()
+    page.locator('.react-datepicker__year-select').select_option(label="2000")
+    page.locator('.react-datepicker__day--014').click()
+    subjects = page.locator('input.subjects-auto-complete__input')
+    subjects.click()
+    subjects.fill('Maths')
+    subjects.press('Enter')
+    page.get_by_label('Reading').check()
+    page.locator('#uploadPicture').set_input_files("C:/Users/user/Downloads/Cat_November_2010-1a.jpg")
+    address = page.get_by_placeholder('Current Address')
+    address.fill('Saint P')
+    state = page.locator('#react-select-3-input')
+    state.click()
+    state.press('Enter')
+    city = page.locator('#react-select-4-input')
+    city.click()
+    city.press('Enter')
+    page.locator('#submit').click()
