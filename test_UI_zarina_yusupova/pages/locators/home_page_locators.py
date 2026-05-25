@@ -1,0 +1,5 @@
+list_of_images_loc = '.oe_product_image_img_wrapper'
+list_of_icon_of_cart_loc = '.o_wsale_product_sub span.fa'
+continue_shopping_button_loc = '.btn.btn-secondary'
+count_of_product_in_cart_loc = '[aria-label = "Main"] sup'
+icon_of_cart_on_navbar = '[aria-label="Main"] .fa.fa-shopping-cart'
