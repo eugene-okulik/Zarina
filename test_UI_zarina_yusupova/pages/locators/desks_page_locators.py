@@ -1,0 +1,7 @@
+sort_by_loc = '.o_sortby_dropdown > a'
+sort_by_low_to_high_loc = '.dropdown-menu > a:nth-child(4)'
+sort_by_high_to_low_loc = '.dropdown-menu > a:nth-child(5)'
+sort_by_name_loc = '.dropdown-menu > a:nth-child(3)'
+list_of_prices_loc = '.oe_currency_value'
+list_of_names_loc = 'h6 > a'
+list_of_checkboxes_loc = '#o_products_attributes_1 input'
